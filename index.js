@@ -8,6 +8,7 @@ const rl = readline.createInterface({
 
 const STR_REGEXP = /([+-]?)(?:([^+x-]+)?(?:x(?:\^([\d\/]+))?)|([^+x-]\s))/gi
 const DIGITS_AFTER_POINT = 4
+
 class Expression {
   constructor (exp, sign) {
     const exprRegx = /[^*/]+|[*/]/g
@@ -70,7 +71,8 @@ const solveExpression = (expressions = []) => {
       console.log('\x1b[32m', 'X2: ', x2.toFixed(DIGITS_AFTER_POINT))
     } else if (descr === 0) {
       const x = -b / 2 * a
-      console.log("\x1b[35m", 'Discriminant is equals to zero, the only solutions is: ', x.toFixed(DIGITS_AFTER_POINT))
+      console.log("\x1b[35m", 'Discriminant is equals to zero, the only solutions is: ')
+      console.log('\x1b[32m', x.toFixed(DIGITS_AFTER_POINT))
     } else if (descr < 0) {
       console.log("\x1b[35m", 'Discriminant is negative, complex solution is: ')
       console.log(`${-b} ± i√(${Math.sqrt(Math.abs(descr)).toFixed(DIGITS_AFTER_POINT)}) / ${2 * a}`)
@@ -124,12 +126,16 @@ rl.question('Enter your polynomial: ', (answer) => {
     return
   }
 
-  const reducedExpr = reduceExpressions(expressionsArray)
-  let reduceStr = `${reducedExpr[0].exp.join(' ')} `
-  for (let i = 1; i < reducedExpr.length; i++) {
-    reduceStr += `${reducedExpr[i].coef >= 0 ? '+' : ''} ${reducedExpr[i].exp.join(' ')} `
+  try {
+    const reducedExpr = reduceExpressions(expressionsArray)
+    let reduceStr = `${reducedExpr[0].exp.join(' ')} `
+    for (let i = 1; i < reducedExpr.length; i++) {
+      reduceStr += `${reducedExpr[i].coef >= 0 ? '+' : ''} ${reducedExpr[i].exp.join(' ')} `
+    }
+    console.log('\x1b[36m%s\x1b[0m', `Reduced form:  ${reduceStr}= 0`)
+    solveExpression(reducedExpr)  
+  } catch (error) {
+    console.error('Unexpected format')
   }
-  console.log('\x1b[36m%s\x1b[0m', `Reduced form:  ${reduceStr}= 0`)
-  solveExpression(reducedExpr)
   rl.close();
 });
