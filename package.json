@@ -1,0 +1,23 @@
+{
+  "name": "camputorv1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cerebrume/CamputorV1.git"
+  },
+  "author": "dkazanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cerebrume/CamputorV1/issues"
+  },
+  "homepage": "https://github.com/Cerebrume/CamputorV1#readme"
+}
