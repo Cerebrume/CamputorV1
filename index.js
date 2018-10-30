@@ -18,7 +18,9 @@ class Expression {
     this.parseCoef()
     if (sign) {
       this.coef *= -1
-      this.exp[0] = String(this.exp[0] * -1)
+      const number = this.exp[0].match(/[\d+]/g)
+      number[0] *= -1
+      this.exp[0] = String(number.join(''))
     }
     this.parsePower()
   }
