@@ -75,7 +75,7 @@ const solveExpression = (expressions = []) => {
       console.log('\x1b[32m', x.toFixed(DIGITS_AFTER_POINT))
     } else if (descr < 0) {
       console.log("\x1b[35m", 'Discriminant is negative, complex solution is: ')
-      console.log(`${-b} ± i√(${Math.sqrt(Math.abs(descr)).toFixed(DIGITS_AFTER_POINT)}) / ${2 * a}`)
+      console.log(`${-b} ± i(${Math.sqrt(Math.abs(descr)).toFixed(DIGITS_AFTER_POINT)}) / ${2 * a}`)
     }
   }
 }
